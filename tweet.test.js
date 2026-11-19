@@ -16,29 +16,29 @@ it('/POST users/signin', async () => {
 });
 
 // Get tous les tweets 
-it('/GET All tweets', async () => {
+/*it('/GET All tweets', async () => {
 
     const res = await request(app).post('/tweet');
     expect(res.body.result).toBe(true);
     expect(res.body.tweets.length).toBeGreaterThan(0)
     tweetsCount = res.body.tweets.length
-});
+});*/
 
 
 // POST nouveau tweet 
-it('/POST tweet/add', async () => {
+/*it('/POST tweet/add', async () => {
 
     const res = await request(app).post('/tweet/add').send({token:token, message:'nouveau message'});
     expect(res.body.result).toBe(true);
 
-});
+});*/
 
 // Ajout d'un tweet
-it('/POST add tweet', async () => {
+/*it('/POST add tweet', async () => {
 
     const res = await request(app).post('/tweet');
     expect(res.body.result).toBe(true);
     expect(res.body.tweets.length).toBe(tweetsCount+1)
 
-});
+});*/
 

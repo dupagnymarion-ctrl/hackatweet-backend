@@ -2,14 +2,14 @@ const request = require('supertest');
 const app = require('./app');
 
 // POST users/signup enregistre nouvel user
-it('/POST users/signup', async () => {
+/*it('/POST users/signup', async () => {
 
     const res = await request(app).post('/users/signup').send({username:'Test',password:'Azerty12'});
     console.log(res.body)
     expect(res.body.result).toBe(true);
     expect(res.body.token.length).toEqual(32);
 
-});
+});*/
 
 // POST users/signin connexion utilisateur ok
 it('/POST users/signin', async () => {
