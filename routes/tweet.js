@@ -44,9 +44,9 @@ router.post('/like', (req, res) => {
   
 });
 
-// GET /tweet?user=<user>&hasktag=<hasktag>
-router.get("/", (req, res) => {
-  if (!checkBody(req.body, ['token'])) {
+// GET /tweet/:token?user=<user>&hasktag=<hasktag>
+router.get("/:token", (req, res) => {
+  if (!checkBody(req.params, ['token'])) {
         res.json({ result: false, error: 'Missing or empty fields' });
         return;
         } 
@@ -57,7 +57,7 @@ router.get("/", (req, res) => {
         let filter = {}
         if (!user)
             filter.user=data._id
-        Tweet.find(filter).then(list => {
+        Tweet.find(filter).populate('user').then(list => {
             res.json({result:true,tweets:list});
         }); 
         }
