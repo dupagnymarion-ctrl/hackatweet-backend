@@ -52,7 +52,7 @@ router.get("/:token", (req, res) => {
         } 
   const { user, hasktag } = req.query;
 
-  User.findOne({ token: req.body.token }).then(data => {
+  User.findOne({ token: req.params.token }).then(data => {
     if(data){
         let filter = {}
         if (!user)
