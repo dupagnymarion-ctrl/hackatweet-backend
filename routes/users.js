@@ -6,7 +6,7 @@ const { checkBody } = require('../modules/checkBody');
 const uid2 = require('uid2');
 const bcrypt = require('bcrypt');
 
-/* POST Sign up */
+/* POST /users/Sign up */
 router.post('/signup', (req, res) => {
   if (!checkBody(req.body, ['username', 'password'])) {
     res.json({ result: false, error: 'Missing or empty fields' });
@@ -35,7 +35,7 @@ router.post('/signup', (req, res) => {
   });
 });
 
-/* POST Sign in */
+/* POST /users/Sign in */
 router.post('/signin', (req, res) => {
   if (!checkBody(req.body, ['username', 'password', 'token'])) {
     res.json({ result: false, error: 'Missing or empty fields' });

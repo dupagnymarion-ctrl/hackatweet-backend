@@ -7,7 +7,7 @@ const { checkBody } = require('../modules/checkBody');
 const uid2 = require('uid2');
 const bcrypt = require('bcrypt');
 
-/* POST add */
+/* POST /tweet/add */
 router.post('/add', (req, res) => {
   if (!checkBody(req.body, ['token', 'message'])) {
     res.json({ result: false, error: 'Missing or empty fields' });
@@ -15,15 +15,31 @@ router.post('/add', (req, res) => {
   }
 
    User.findOne({ token: req.body.token }).then(data => {
-    newTweet = new Tweet({
-        user:data._id,
-        message:req.body.message,
-        isLiked:false
-    })
-    newTweet.save().then(newDoc => {
-        res.json({ result: true });
-      });
+    if(data){
+        newTweet = new Tweet({
+            user:data._id,
+            message:req.body.message,
+            isLiked:false
+        })
+        newTweet.save().then(newDoc => {
+            res.json({ result: true });
+        });
+        }
+  });  
 
+});
+
+/* POST /tweet/ike a tweet */
+router.post('/like', (req, res) => {
+  if (!checkBody(req.body, ['token', 'tweet_id'])) {
+    res.json({ result: false, error: 'Missing or empty fields' });
+    return;
+  }
+
+   Tweet.updateOne({ _id: req.body.tweet_id },{isLiked:req.body.isLiked}).then(data => {
+        if(data) {
+             res.json({ result: true });
+        }
   });  
   
 });
