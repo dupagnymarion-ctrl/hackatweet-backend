@@ -71,4 +71,31 @@ router.get("/:token", (req, res) => {
  
 });
 
+// GET /trend/hashtag/:token/:hashtag
+router.get("/hashtag/:token/:hashtag", (req, res) => {
+  if (!checkBody(req.params, ['token', 'hashtag'])) {
+        res.json({ result: false, error: 'Missing or empty fields' });
+        return;
+        } 
+   
+  Trend.aggregate([{ $match: { hashtag:req.params.hashtag }}, 
+                  { $group: { _id: "$hashtag", count: { $sum: 1 },tweets: { $push: '$tweet' } }},
+                  { $lookup: {
+                    from: 'tweets',          // nom de la collection (pluriel, minuscule)
+                    localField: 'tweets',
+                    foreignField: '_id',
+                    as: 'tweets'
+                  }}]).then(data => {
+    if(data){
+        //console.log(data)
+        res.json({result:true,trends:data});
+        }
+    else{
+        res.json({ result: false, error: 'User not founded' });
+        return;
+        }
+  });  
+ 
+});
+
 module.exports = router;

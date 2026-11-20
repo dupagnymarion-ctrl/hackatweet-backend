@@ -29,7 +29,7 @@ router.post('/add', (req, res) => {
 
 });
 
-/* POST /tweet/ike a tweet */
+/* POST /tweet/like a tweet */
 router.post('/like', (req, res) => {
   if (!checkBody(req.body, ['token', 'tweet_id'])) {
     res.json({ result: false, error: 'Missing or empty fields' });
