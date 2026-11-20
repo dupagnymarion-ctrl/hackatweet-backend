@@ -51,13 +51,17 @@ router.get("/:token", (req, res) => {
         return;
         } 
 
+  Tweet.find().populate('user').then(list => {
+            res.json({result:true,tweets:list});
+        }); 
+/*
   User.findOne({ token: req.params.token }).then(data => {
     if(data){
-        /*let filter = {}
+        let filter = {}
         if (!user)
             filter.user=data._id
-        //console.log(filter)*/
-        Tweet.find().populate('user').then(list => {
+        //console.log(filter)
+        Tweet.find(filter).populate('user').then(list => {
             res.json({result:true,tweets:list});
         }); 
         }
@@ -65,7 +69,7 @@ router.get("/:token", (req, res) => {
         res.json({ result: false, error: 'User not founded' });
         return;
         }
-  });  
+  });  */
  
 });
 

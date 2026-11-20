@@ -38,7 +38,7 @@ router.post('/signup', (req, res) => {
 
 /* POST /users/Sign in */
 router.post('/signin', (req, res) => {
-  if (!checkBody(req.body, ['username', 'password', 'token'])) {
+  if (!checkBody(req.body, ['username', 'password'])) {
     res.json({ result: false, error: 'Missing or empty fields' });
     return;
   }
