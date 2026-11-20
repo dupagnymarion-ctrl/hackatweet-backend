@@ -50,14 +50,14 @@ router.get("/:token", (req, res) => {
         res.json({ result: false, error: 'Missing or empty fields' });
         return;
         } 
-  const { user, hasktag } = req.query;
 
   User.findOne({ token: req.params.token }).then(data => {
     if(data){
-        let filter = {}
+        /*let filter = {}
         if (!user)
             filter.user=data._id
-        Tweet.find(filter).populate('user').then(list => {
+        //console.log(filter)*/
+        Tweet.find().populate('user').then(list => {
             res.json({result:true,tweets:list});
         }); 
         }
