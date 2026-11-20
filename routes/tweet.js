@@ -22,7 +22,7 @@ router.post('/add', (req, res) => {
             isLiked:false
         })
         newTweet.save().then(newDoc => {
-            res.json({ result: true });
+            res.json({ result: true, tweets:newDoc });
         });
         }
   });  

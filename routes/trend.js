@@ -14,10 +14,9 @@ router.post('/add', (req, res) => {
     res.json({ result: false, error: 'Missing or empty fields' });
     return;
   }
-
     newTrend = new Trend({
         tweet:req.body.tweet_id,
-        hashtag:req.body.hashtag
+        hashtag:req.body.hashtag[0]
     })
     newTrend.save().then(newDoc => {
         res.json({ result: true });
